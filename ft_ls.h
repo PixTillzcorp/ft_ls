@@ -6,6 +6,7 @@
 # include <dirent.h>
 # include <stdlib.h>
 # include <stdio.h>
+# include <errno.h>
 # include <time.h>
 # include <grp.h>
 # include <pwd.h>
@@ -29,8 +30,10 @@ void			ft_error(const char *msg, int usage);
 void			ft_perror(const char *msg);
 
 int				ft_flag(const char **args, char **flag);
-void			ft_disp_dir(const char *path, char *flags);
+int				ft_disp_dir(const char *path, char *flags, int multi);
 void			ft_print_sort(char **tab, char *flags);
+void			ft_print_large(const char *path, int *mlen);
+int				ft_print_single(const char *path, int large);
 
 long			ft_data_mtime(const char *path);
 char			*ft_data_date(const char *path);

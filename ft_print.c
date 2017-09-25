@@ -17,7 +17,7 @@ static int	ft_total_blocks(char **tab)
 	return (ret);
 }
 
-static void	ft_print_large(const char *path, int *mlen)
+void		ft_print_large(const char *path, int *mlen)
 {
 	char	*put;
 

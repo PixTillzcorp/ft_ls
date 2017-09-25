@@ -35,12 +35,12 @@ char		*ft_data_uid(const char *path, int len)
 	i = 0;
 	ret = (char *)ft_memalloc(sizeof(char) * len + 1);
 	usr = getpwuid(stats.st_uid);
-	while (usr->pw_name[i])
+	while (usr->pw_name[i] && i < len)
 	{
 		ret[i] = usr->pw_name[i];
 		i++;
 	}
-	while (i < len + 1)
+	while (i < len)
 		ret[i++] = ' ';
 	ret[i] = '\0';
 	return (ret);
@@ -58,12 +58,12 @@ char		*ft_data_gid(const char *path, int len)
 	i = 0;
 	ret = (char *)ft_memalloc(sizeof(char) * len + 1);
 	grp = getgrgid(stats.st_gid);
-	while (grp->gr_name[i])
+	while (grp->gr_name[i] && i < len)
 	{
 		ret[i] = grp->gr_name[i];
 		i++;
 	}
-	while (i < len + 1)
+	while (i < len)
 		ret[i++] = ' ';
 	ret[i] = '\0';
 	return (ret);
@@ -81,13 +81,14 @@ char		*ft_data_size(const char *path, int len)
 	i = 0;
 	ret = (char *)ft_memalloc(sizeof(char) * len + 1);
 	tmp = ft_litoa((long long)stats.st_size);
-	while (tmp[i])
+	while (tmp[i] && i < len)
 	{
 		ret[i] = tmp[i];
 		i++;
 	}
-	while (i < len + 1)
+	while (i < len)
 		ret[i++] = ' ';
 	ret[i] = '\0';
+	free(tmp);
 	return (ret);
 }

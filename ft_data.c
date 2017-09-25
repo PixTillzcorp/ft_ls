@@ -61,13 +61,22 @@ static char	*ft_get_rights(mode_t rights)
 
 	ret = ft_chrjoin_free("", (rights & S_IRUSR ? 'r' : '-'), 0);
 	ret = ft_chrjoin_free(ret, (rights & S_IWUSR ? 'w' : '-'), 1);
-	ret = ft_chrjoin_free(ret, (rights & S_IXUSR ? 'x' : '-'), 1);
+	if (rights & S_ISUID)
+		ret = ft_chrjoin_free(ret, (rights & S_IXUSR ? 's' : 'S'), 1);
+	else
+		ret = ft_chrjoin_free(ret, (rights & S_IXUSR ? 'x' : '-'), 1);
 	ret = ft_chrjoin_free(ret, (rights & S_IRGRP ? 'r' : '-'), 1);
 	ret = ft_chrjoin_free(ret, (rights & S_IWGRP ? 'w' : '-'), 1);
-	ret = ft_chrjoin_free(ret, (rights & S_IXGRP ? 'x' : '-'), 1);
+	if (rights & S_ISGID)
+		ret = ft_chrjoin_free(ret, (rights & S_IXGRP ? 's' : 'S'), 1);
+	else
+		ret = ft_chrjoin_free(ret, (rights & S_IXGRP ? 'x' : '-'), 1);
 	ret = ft_chrjoin_free(ret, (rights & S_IROTH ? 'r' : '-'), 1);
 	ret = ft_chrjoin_free(ret, (rights & S_IWOTH ? 'w' : '-'), 1);
-	ret = ft_chrjoin_free(ret, (rights & S_IXOTH ? 'x' : '-'), 1);
+	if (rights & S_ISVTX)
+		ret = ft_chrjoin_free(ret, (rights & S_IXOTH ? 't' : 'T'), 1);
+	else
+		ret = ft_chrjoin_free(ret, (rights & S_IXOTH ? 'x' : '-'), 1);
 	return (ret);
 }
 
