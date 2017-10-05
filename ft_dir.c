@@ -75,7 +75,7 @@ int			ft_disp_dir(const char *path, char *flags, int multi)
 		return (ft_print_single(path, (ft_strchr(flags, 'l') ? 1 : 0)));
 	tab = ft_init_tab(ft_nbrfile(path, (int)(ft_strchr(flags, 'a'))));
 	if (ft_strcmp(path, ".") || multi >= 2)
-		ft_putstr(path);
+		ft_printf("%s:\n", path);
 	if (ft_nbrfile(path, (int)(ft_strchr(flags, 'a'))) == 0)
 		ft_putstr("(empty directory)\n\n");
 	else
