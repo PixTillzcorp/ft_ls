@@ -2,7 +2,8 @@
 
 void		ft_error(const char *msg, int usage)
 {
-	printf("%s\n", msg);
+	ft_putstr(msg);
+	ft_putchar('\n');
 	if (msg)
 		ft_memdel((void **)&msg);
 	if (usage)

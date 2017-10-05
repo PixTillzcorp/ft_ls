@@ -31,3 +31,14 @@ int			ft_is_bc(const char *path)
 		return (1);
 	return (0);
 }
+
+int			ft_is_l(const char *path)
+{
+	s_stat	stats;
+
+	if (lstat(path, &stats) < 0)
+		ft_perror("");
+	if (ft_data_type(stats.st_mode & S_IFMT) == 'l')
+		return (1);
+	return (0);
+}

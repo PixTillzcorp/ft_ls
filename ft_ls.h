@@ -11,7 +11,7 @@
 # include <time.h>
 # include <grp.h>
 # include <pwd.h>
-# include "libft/libft.h"
+# include "libft/includes/libft.h"
 
 typedef	struct	dirent
 				s_dir;
@@ -49,6 +49,7 @@ void			ft_print_sort(char **tab, char *flags);
 void			ft_print_large(const char *path, t_pad padding);
 int				ft_print_single(const char *path, int large);
 
+int				ft_is_l(const char *path);
 int				ft_is_bc(const char *path);
 char			ft_data_type(mode_t type);
 

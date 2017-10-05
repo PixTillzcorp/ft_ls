@@ -37,7 +37,7 @@ static void	ft_sort_abc(char **tab)
 		while (tab[j])
 		{
 			name_2 = ft_data_name(tab[j]);
-			if (0 > ft_strcmp(name_1, name_2))
+			if (0 < ft_strcmp(name_1, name_2))
 			{
 				name_1 = name_2;
 				ft_swap_chr(&tab[i], &tab[j]);

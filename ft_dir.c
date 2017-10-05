@@ -48,16 +48,16 @@ static void	ft_rec_disp(const char *path, char *flags, int multi)
 
 	n_path = NULL;
 	rep = ft_opendir(path);
-	printf("\n");
+	ft_putchar('\n');
 	while ((file = readdir(rep)))
 	{
 		if (n_path)
 			ft_memdel((void **)&n_path);
 		if (file->d_name[0] == '.' && !ft_strchr(flags, 'a'))
-			continue;
+			continue ;
 		n_path = ft_newpath(n_path, path, file->d_name);
-		if (ft_isdir(n_path) && ft_strcmp(file->d_name, ".")\
-		&& ft_strcmp(file->d_name, ".."))
+		if (ft_isdir(n_path) && ft_strcmp(file->d_name, ".") &&\
+		ft_strcmp(file->d_name, "..") && !ft_is_l(path))
 			ft_disp_dir(n_path, flags, multi);
 	}
 	ft_closedir(rep);
@@ -75,9 +75,9 @@ int			ft_disp_dir(const char *path, char *flags, int multi)
 		return (ft_print_single(path, (ft_strchr(flags, 'l') ? 1 : 0)));
 	tab = ft_init_tab(ft_nbrfile(path, (int)(ft_strchr(flags, 'a'))));
 	if (ft_strcmp(path, ".") || multi >= 2)
-		printf("%s:\n", path);
+		ft_putstr(path);
 	if (ft_nbrfile(path, (int)(ft_strchr(flags, 'a'))) == 0)
-		printf("(empty directory)\n\n");
+		ft_putstr("(empty directory)\n\n");
 	else
 	{
 		while ((file = readdir(rep)))

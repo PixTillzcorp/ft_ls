@@ -7,7 +7,7 @@ int			ft_len_min_max(const char *path)
 	ret = 0;
 	ret += ft_nbrlen(ft_data_minor(path));
 	ret += ft_nbrlen(ft_data_major(path));
-	ret += 2;
+	ret += 3;
 	return (ret);
 }
 

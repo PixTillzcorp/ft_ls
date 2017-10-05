@@ -19,7 +19,7 @@ char		*ft_data_uid(const char *path, int len)
 	char	*ret;
 	int		i;
 
-	if (stat(path, &stats) < 0)
+	if (lstat(path, &stats) < 0)
 		ft_perror("");
 	i = 0;
 	ret = (char *)ft_memalloc(sizeof(char) * len + 1);
@@ -42,7 +42,7 @@ char		*ft_data_gid(const char *path, int len)
 	char	*ret;
 	int		i;
 
-	if (stat(path, &stats) < 0)
+	if (lstat(path, &stats) < 0)
 		ft_perror("");
 	i = 0;
 	ret = (char *)ft_memalloc(sizeof(char) * len + 1);

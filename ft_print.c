@@ -21,24 +21,28 @@ void		ft_print_large(const char *path, t_pad padding)
 {
 	char	*put;
 
-	printf("%s  ", (put = ft_data_wrx(path)));
+	ft_putstr((put = ft_data_wrx(path)));
 	free(put);
-	printf("%2d ", ft_data_nlink(path));
-	printf("%s ", (put = ft_data_uid(path, padding.n_uid)));
+	ft_printf("%4d ", ft_data_nlink(path));
+	ft_printf("%s ", (put = ft_data_uid(path, padding.n_uid)));
 	free(put);
-	printf("%s ", (put = ft_data_gid(path, padding.n_gid)));
+	ft_printf("%s ", (put = ft_data_gid(path, padding.n_gid)));
 	free(put);
 	if (ft_is_bc(path))
 	{
-		ft_putxchar(' ', padding.b_size - printf("%d, %d",\
-		ft_data_major(path), ft_data_minor(path)));
+		ft_putxchar(' ', (padding.b_size / 2) - ft_printf("%d",\
+		ft_data_major(path)));
+		ft_putchar(',');
+		ft_putxchar(' ', (padding.b_size / 2) - ft_printf(" %d",\
+		ft_data_major(path)));
+		ft_putchar(' ');
 	}
 	else
 	{
-		printf("%s ", (put = ft_data_size(path, padding.b_size)));
+		ft_printf("%s ", (put = ft_data_size(path, padding.b_size)));
 		free(put);
 	}
-	printf("%s ", (put = ft_data_date(path)));
+	ft_printf("%s ", (put = ft_data_date(path)));
 	free(put);
 }
 
@@ -63,7 +67,8 @@ int			ft_print_single(const char *path, int large)
 			padding.b_size = ft_llnbrlen(stats.st_size);
 		ft_print_large(path, padding);
 	}
-	printf("%s\n", path);
+	ft_putstr(path);
+	ft_putchar('\n');
 	return (1);
 }
 
@@ -76,21 +81,21 @@ void		ft_print_sort(char **tab, char *flags)
 
 	i = 0;
 	if (ft_strchr(flags, 'l'))
-		printf("total %d\n", ft_total_blocks(tab));
+		ft_printf("total %d\n", ft_total_blocks(tab));
 	padding = ft_padding(tab);
 	while (tab[i])
 	{
 		if (!(buff = (char *)ft_memalloc(sizeof(char) * 100)))
 			ft_perror("");
 		buff[99] = '\0';
-		if (stat(tab[i], &stats) < 0)
+		if (lstat(tab[i], &stats) < 0)
 			ft_perror("");
 		if (ft_strchr(flags, 'l'))
 			ft_print_large(tab[i], padding);
-		printf("%s", ft_data_name(tab[i]));
+		ft_putstr(ft_data_name(tab[i]));
 		if (readlink(tab[i++], buff, 100) > 0)
-			printf(" -> %s", buff);
-		printf("\n");
+			ft_printf(" -> %s", buff);
+		ft_putchar('\n');
 		free(buff);
 	}
 }
