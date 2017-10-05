@@ -12,7 +12,7 @@ int			ft_isdir(const char *path)
 	return (0);
 }
 
-char		*ft_newpath(char *dest, const char *p, const char* d)
+static char		*ft_newpath(char *dest, const char *p, const char* d)
 {
 	int		i;
 	int		j;
@@ -28,6 +28,16 @@ char		*ft_newpath(char *dest, const char *p, const char* d)
 		dest[j++] = d[i++];
 	dest[j] = '\0';
 	return (dest);
+}
+
+char		**ft_put_in_tab(char **tab, const char *path, char *name)
+{
+	int		i;
+	i = 0;
+	while (tab[i])
+		i++;
+	tab[i] = ft_newpath(tab[i], path, name);
+	return (tab);
 }
 
 static void	ft_rec_disp(const char *path, char *flags, int multi)

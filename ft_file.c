@@ -1,8 +1,8 @@
 #include "ft_ls.h"
 
-static int	ft_llnbrlen(long long nbr)
+int			ft_llnbrlen(long long nbr)
 {
-	int count;
+	int		count;
 
 	count = 1;
 	while (nbr != 0)
@@ -14,30 +14,6 @@ static int	ft_llnbrlen(long long nbr)
 			break;
 	}
 	return (count);
-}
-
-int			ft_print_single(const char *path, int large)
-{
-	s_stat	stats;
-	s_pwd	*usr;
-	s_grp	*grp;
-	int		*tab;
-
-	if (stat(path, &stats) < 0)
-		ft_perror("");
-	tab = (int *)ft_memalloc(sizeof(int) * 3);
-	if (large)
-	{
-		usr = getpwuid(stats.st_uid);
-		grp = getgrgid(stats.st_gid);
-		tab[0] = (int)ft_strlen(usr->pw_name);
-		tab[1] = (int)ft_strlen(grp->gr_name);
-		tab[2] = ft_llnbrlen(stats.st_size);
-		ft_print_large(path, tab);
-	}
-	printf("%s\n", path);
-	free(tab);
-	return (1);
 }
 
 int			ft_nbrfile(const char *path, int a)

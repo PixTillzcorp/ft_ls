@@ -6,20 +6,9 @@ char		*ft_data_name(const char *path)
 	int		i;
 
 	i = ft_strlen(path);
-	while (path[i - 1] != '/')
+	while (path[i - 1] != '/' && i != 0)
 		i--;
 	ret = (char *)(path + i);
-	return (ret);
-}
-
-int			ft_data_nlink(const char *path)
-{
-	s_stat	stats;
-	int		ret;
-
-	if (stat(path, &stats) < 0)
-		ft_perror("");
-	ret = (int)stats.st_nlink;
 	return (ret);
 }
 
@@ -66,29 +55,5 @@ char		*ft_data_gid(const char *path, int len)
 	while (i < len)
 		ret[i++] = ' ';
 	ret[i] = '\0';
-	return (ret);
-}
-
-char		*ft_data_size(const char *path, int len)
-{
-	s_stat	stats;
-	char	*ret;
-	char	*tmp;
-	int		i;
-
-	if (stat(path, &stats) < 0)
-		ft_perror("");
-	i = 0;
-	ret = (char *)ft_memalloc(sizeof(char) * len + 1);
-	tmp = ft_litoa((long long)stats.st_size);
-	while (tmp[i] && i < len)
-	{
-		ret[i] = tmp[i];
-		i++;
-	}
-	while (i < len)
-		ret[i++] = ' ';
-	ret[i] = '\0';
-	free(tmp);
 	return (ret);
 }

@@ -6,9 +6,13 @@ NAME = ft_ls
 
 CC = gcc
 
-SRCC = ft_ls.c ft_file.c ft_data.c ft_data_2.c ft_dir.c ft_error.c ft_flag.c ft_print.c ft_sort.c ft_tab.c
+SRCC =	ft_ls.c ft_file.c ft_dir.c ft_error.c ft_flag.c ft_print.c ft_sort.c ft_tab.c	\
+		ft_data_rights.c ft_data_type.c ft_data_size.c ft_data_time.c ft_data_id.c		\
+		ft_padding.c
 
-SRCO = ft_ls.o ft_file.o ft_data.o ft_data_2.o ft_dir.o ft_error.o ft_flag.o ft_print.o ft_sort.o ft_tab.o
+SRCO =	ft_ls.o ft_file.o ft_dir.o ft_error.o ft_flag.o ft_print.o ft_sort.o ft_tab.o	\
+		ft_data_rights.o ft_data_type.o ft_data_size.o ft_data_time.o ft_data_id.o		\
+		ft_padding.o
 
 LIB_SRC = libft/libft.a
 

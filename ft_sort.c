@@ -9,7 +9,7 @@ static void	ft_swap_chr(char **a, char **b)
 	*b = swap;
 }
 
-static char	**ft_rev_sort(char **tab)
+static void	ft_rev_sort(char **tab)
 {
 	int		i;
 	int		j;
@@ -20,11 +20,37 @@ static char	**ft_rev_sort(char **tab)
 		j++;
 	while (i < j)
 		ft_swap_chr(&tab[i++], &tab[j--]);
-	return (tab);
 }
 
-static char	**ft_sort_time(char **tab)
+static void	ft_sort_abc(char **tab)
 {
+	char	*name_1;
+	char	*name_2;
+	int		i;
+	int		j;
+
+	i = 0;
+	while (tab[i])
+	{
+		j = i;
+		name_1 = ft_data_name(tab[i]);
+		while (tab[j])
+		{
+			name_2 = ft_data_name(tab[j]);
+			if (0 > ft_strcmp(name_1, name_2))
+			{
+				name_1 = name_2;
+				ft_swap_chr(&tab[i], &tab[j]);
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
+static void	ft_sort_time(char **tab)
+{
+	long	time_f;
 	long	comp;
 	int		i;
 	int		j;
@@ -36,23 +62,23 @@ static char	**ft_sort_time(char **tab)
 		comp = ft_data_mtime(tab[i]);
 		while (tab[j])
 		{
-			if (comp > ft_data_mtime(tab[j]))
+			if (comp > (time_f = ft_data_mtime(tab[j])))
 			{
-				comp = ft_data_mtime(tab[j]);
+				comp = time_f;
 				ft_swap_chr(&tab[i], &tab[j]);
 			}
 			j++;
 		}
 		i++;
 	}
-	return (tab);
 }
 
 char		**ft_sort_tab(char **tab, char *flags)
 {
+	ft_sort_abc(tab);
 	if (ft_strchr(flags, 't'))
-		tab = ft_sort_time(tab);
+		ft_sort_time(tab);
 	if (ft_strchr(flags, 'r'))
-		tab = ft_rev_sort(tab);
+		ft_rev_sort(tab);
 	return (tab);
 }
