@@ -34,6 +34,7 @@ typedef struct	s_pad
 
 int				ft_closedir(DIR *op_dir);
 int				ft_isdir(const char *path);
+int				ft_nbrdir(const char **input, int argc);
 int				ft_nbrfile(const char *path, int a);
 DIR				*ft_opendir(const char *path);
 
@@ -43,9 +44,9 @@ void			ft_perror(const char *msg);
 int				ft_llnbrlen(long long nbr);
 
 int				ft_flag(const char **args, char **flag);
-int				ft_disp_dir(const char *path, char *flags, int multi);
+int				ft_disp_dir(const char *path, char *flags, int nbr_dir);
 
-void			ft_print_sort(char **tab, char *flags);
+void			ft_print_sort(char **tab, char *flags, int single);
 void			ft_print_large(const char *path, t_pad padding);
 int				ft_print_single(const char *path, int large);
 

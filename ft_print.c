@@ -33,8 +33,8 @@ void		ft_print_large(const char *path, t_pad padding)
 		ft_putxchar(' ', (padding.b_size / 2) - ft_printf("%d",\
 		ft_data_major(path)));
 		ft_putchar(',');
-		ft_putxchar(' ', (padding.b_size / 2) - ft_printf(" %d",\
-		ft_data_major(path)));
+		ft_putxchar(' ', (padding.b_size / 2) + (padding.b_size % 2) - 1\
+		- ft_printf(" %d", ft_data_major(path)));
 		ft_putchar(' ');
 	}
 	else
@@ -46,33 +46,7 @@ void		ft_print_large(const char *path, t_pad padding)
 	free(put);
 }
 
-int			ft_print_single(const char *path, int large)
-{
-	t_pad	padding;
-	s_stat	stats;
-	s_pwd	*usr;
-	s_grp	*grp;
-
-	if (lstat(path, &stats) < 0)
-		ft_perror("");
-	if (large)
-	{
-		usr = getpwuid(stats.st_uid);
-		grp = getgrgid(stats.st_gid);
-		padding.n_uid = (int)ft_strlen(usr->pw_name);
-		padding.n_gid = (int)ft_strlen(grp->gr_name);
-		if (ft_is_bc(path))
-			padding.b_size = ft_len_min_max(path);
-		else
-			padding.b_size = ft_llnbrlen(stats.st_size);
-		ft_print_large(path, padding);
-	}
-	ft_putstr(path);
-	ft_putchar('\n');
-	return (1);
-}
-
-void		ft_print_sort(char **tab, char *flags)
+void		ft_print_sort(char **tab, char *flags, int single)
 {
 	t_pad	padding;
 	s_stat	stats;
@@ -80,7 +54,7 @@ void		ft_print_sort(char **tab, char *flags)
 	int		i;
 
 	i = 0;
-	if (ft_strchr(flags, 'l'))
+	if (ft_strchr(flags, 'l') && !single)
 		ft_printf("total %d\n", ft_total_blocks(tab));
 	padding = ft_padding(tab);
 	while (tab[i])

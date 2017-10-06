@@ -16,6 +16,21 @@ int			ft_llnbrlen(long long nbr)
 	return (count);
 }
 
+int			ft_nbrdir(const char **input, int argc)
+{
+	int		count;
+	int		i;
+
+	i = 0;
+	count = 0;
+	while (i < argc)
+	{
+		if (ft_isdir(input[i++]))
+			count++;
+	}
+	return (count);
+}
+
 int			ft_nbrfile(const char *path, int a)
 {
 	int		count;

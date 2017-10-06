@@ -42,3 +42,15 @@ int			ft_is_l(const char *path)
 		return (1);
 	return (0);
 }
+
+int			ft_isdir(const char *path)
+{
+	DIR		*is_dir;
+
+	if ((is_dir = ft_opendir(path)))
+	{
+		closedir(is_dir);
+		return (1);
+	}
+	return (0);
+}
