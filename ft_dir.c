@@ -33,10 +33,12 @@ static void	ft_rec_disp(const char *path, char *flags, int nbr_dir)
 		if (file->d_name[0] == '.' && !ft_strchr(flags, 'a'))
 			continue ;
 		n_path = ft_newpath(n_path, path, file->d_name);
-		if (ft_isdir(n_path) && ft_strcmp(file->d_name, ".") &&\
-		ft_strcmp(file->d_name, "..") && !ft_is_l(n_path)) //mod
+		if (!ft_is_l(n_path) && ft_isdir(n_path) &&\
+		ft_strcmp(file->d_name, ".") && ft_strcmp(file->d_name, ".."))
 		{
 			ft_putchar('\n');
+			ft_putstr(n_path);
+			ft_putstr(":\n");
 			ft_disp_dir(n_path, flags, nbr_dir);
 		}
 	}
@@ -67,7 +69,7 @@ int			ft_disp_dir(const char *path, char *flags, int nbr_dir)
 	if (ft_strcmp(path, ".") && nbr_dir > 1)
 		ft_printf("%s:\n", path);
 	if (ft_nbrfile(path, (int)(ft_strchr(flags, 'a'))) == 0)
-		ft_putstr("(empty directory)\n\n");
+		ft_putstr("(empty directory)\n");
 	else
 	{
 		while ((file = readdir(rep)))

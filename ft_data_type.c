@@ -47,7 +47,7 @@ int			ft_isdir(const char *path)
 {
 	DIR		*is_dir;
 
-	if ((is_dir = ft_opendir(path)))
+	if ((is_dir = opendir(path)))
 	{
 		closedir(is_dir);
 		return (1);
