@@ -11,6 +11,14 @@ void		ft_error(const char *msg, int usage)
 	exit(-1);
 }
 
+void		ft_check_input(const char **input, int nbr_arg, int pos)
+{
+	DIR		*test;
+
+	while (pos < nbr_arg)
+		test = ft_opendir(input[pos++]);
+}
+
 void		ft_perror(const char *msg)
 {
 	perror(msg);

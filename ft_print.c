@@ -19,15 +19,12 @@ static int	ft_total_blocks(char **tab)
 
 void		ft_print_large(const char *path, t_pad padding)
 {
-	char	*put;
-
-	ft_putstr((put = ft_data_wrx(path)));
-	free(put);
+	ft_putstr_free(ft_data_wrx(path), 1);
 	ft_printf("%4d ", ft_data_nlink(path));
-	ft_printf("%s ", (put = ft_data_uid(path, padding.n_uid)));
-	free(put);
-	ft_printf("%s ", (put = ft_data_gid(path, padding.n_gid)));
-	free(put);
+	ft_putstr_free(ft_data_uid(path, padding.n_uid), 1);
+	ft_putchar(' ');
+	ft_putstr_free(ft_data_gid(path, padding.n_gid), 1);
+	ft_putchar(' ');
 	if (ft_is_bc(path))
 	{
 		ft_putxchar(' ', (padding.b_size / 2) - ft_printf("%d",\
@@ -39,11 +36,11 @@ void		ft_print_large(const char *path, t_pad padding)
 	}
 	else
 	{
-		ft_printf("%s ", (put = ft_data_size(path, padding.b_size)));
-		free(put);
+		ft_putstr_free(ft_data_size(path, padding.b_size), 1);
+		ft_putchar(' ');
 	}
-	ft_printf("%s ", (put = ft_data_date(path)));
-	free(put);
+	ft_putstr_free(ft_data_date(path), 1);
+	ft_putchar(' ');
 }
 
 void		ft_print_sort(char **tab, char *flags, int single)

@@ -2,6 +2,7 @@
 # define FT_LS_H
 
 # include <uuid/uuid.h>
+# include <sys/ioctl.h>
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <dirent.h>
@@ -12,6 +13,9 @@
 # include <grp.h>
 # include <pwd.h>
 # include "libft/includes/libft.h"
+
+typedef struct	winsize
+				s_ws;
 
 typedef	struct	dirent
 				s_dir;
@@ -40,6 +44,7 @@ DIR				*ft_opendir(const char *path);
 
 void			ft_error(const char *msg, int usage);
 void			ft_perror(const char *msg);
+void			ft_check_input(const char **input, int nbr_arg, int pos);
 
 int				ft_llnbrlen(long long nbr);
 

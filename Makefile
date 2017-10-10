@@ -52,6 +52,11 @@ re_init:
 re_done:
 	@ echo "$(BLUE)$(FONT_NOIR)~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{ Reset Complete[$(GREEN)\xe2\x9c\x94$(BLUE)]$(NORMAL)"
 
+#~~~~~RULES FOR GIT~~~~~~~~
+
+git_add:
+	@ git add $(git status | grep modified | rev | cut -d' ' -f1 | rev | tr '\n' ' ' | rev | cut -d' ' -f2- | rev)
+
 #~~~~~~~~~~~~~~~~~~~~~~~~~
 
 lib:

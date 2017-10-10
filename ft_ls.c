@@ -18,6 +18,7 @@ static void	ft_single_file(const char **input, char *flags, int nbr_arg, int pos
 
 	tmp = pos;
 	size = 0;
+	ft_check_input(input, nbr_arg, pos);
 	while (pos < nbr_arg)
 	{
 		if (!ft_isdir(input[pos]))

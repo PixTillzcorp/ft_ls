@@ -62,7 +62,7 @@ static void	ft_sort_time(char **tab)
 		comp = ft_data_mtime(tab[i]);
 		while (tab[j])
 		{
-			if (comp > (time_f = ft_data_mtime(tab[j])))
+			if (comp < (time_f = ft_data_mtime(tab[j])))
 			{
 				comp = time_f;
 				ft_swap_chr(&tab[i], &tab[j]);

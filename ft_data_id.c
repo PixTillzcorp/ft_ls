@@ -22,8 +22,13 @@ char		*ft_data_uid(const char *path, int len)
 	if (lstat(path, &stats) < 0)
 		ft_perror("");
 	i = 0;
+	if (!(usr = getpwuid(stats.st_uid)))
+	{
+		len -= (int)(ft_strlen(ret = ft_itoa((int)stats.st_uid)));
+		ret = ft_strjoin_free(ret, ft_strchain(' ', len), 'b');
+		return (ret);
+	}
 	ret = (char *)ft_memalloc(sizeof(char) * len + 1);
-	usr = getpwuid(stats.st_uid);
 	while (usr->pw_name[i] && i < len)
 	{
 		ret[i] = usr->pw_name[i];
@@ -45,8 +50,13 @@ char		*ft_data_gid(const char *path, int len)
 	if (lstat(path, &stats) < 0)
 		ft_perror("");
 	i = 0;
+	if (!(grp = getgrgid(stats.st_gid)))
+	{
+		len -= (int)(ft_strlen(ret = ft_itoa((int)stats.st_gid)));
+		ret = ft_strjoin_free(ret, ft_strchain(' ', len), 'b');
+		return (ret);
+	}
 	ret = (char *)ft_memalloc(sizeof(char) * len + 1);
-	grp = getgrgid(stats.st_gid);
 	while (grp->gr_name[i] && i < len)
 	{
 		ret[i] = grp->gr_name[i];
