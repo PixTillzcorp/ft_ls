@@ -78,7 +78,7 @@ int			ft_get_winsize(void)
 
 	if (ioctl(0, TIOCGWINSZ, &win) < 0)
 		ft_perror("ioctl");
-	return (win.ws_col);
+	return ((win.ws_col == 0 ? 1 : win.ws_col));
 }
 
 t_pad		ft_padding(char **tab)

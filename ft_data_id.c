@@ -1,5 +1,16 @@
 #include "ft_ls.h"
 
+int			ft_data_nlink(const char *path)
+{
+	s_stat	stats;
+	int		ret;
+
+	if (lstat(path, &stats) < 0)
+		ft_perror("");
+	ret = (int)stats.st_nlink;
+	return (ret);
+}
+
 int			ft_lenmax_name(char **tab)
 {
 	int		len;

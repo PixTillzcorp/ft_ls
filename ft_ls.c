@@ -10,7 +10,7 @@ static void	ft_insert(char **tab, char *str)
 	tab[i] = ft_strdup(str);
 }
 
-static void	ft_single_file(const char **input, char *flags, int nbr_arg, int pos)
+static void	ft_single_file(const char **input, char *flags, int nbr, int pos)
 {
 	char	**tab;
 	int		size;
@@ -18,25 +18,27 @@ static void	ft_single_file(const char **input, char *flags, int nbr_arg, int pos
 
 	tmp = pos;
 	size = 0;
-	ft_check_input(input, nbr_arg, pos);
-	while (pos < nbr_arg)
+	ft_check_input(input, nbr, pos);
+	while (pos < nbr)
 	{
-		if (!ft_isdir(input[pos]))
-			size++;	
-		pos++;
+		if (!ft_isdir(input[pos++]))
+			size++;
 	}
-	tab = ft_init_tab(size);
-	pos = tmp;
-	while (pos < nbr_arg)
+	if (size)
 	{
-		if (!ft_isdir(input[pos]))
-			ft_insert(tab, (char *)(input[pos]));
-		pos++;
+		tab = ft_init_tab(size);
+		pos = tmp;
+		while (pos < nbr)
+		{
+			if (!ft_isdir(input[pos]))
+				ft_insert(tab, (char *)(input[pos]));
+			pos++;
+		}
+		ft_print_sort(ft_sort_tab(tab, flags), flags, 1);
+		if (nbr - tmp > size && tab[0])
+			ft_putchar('\n');
+		ft_free_tab(tab);
 	}
-	ft_print_sort(ft_sort_tab(tab, flags), flags, 1);
-	if (nbr_arg - tmp > size && tab[0])
-		ft_putchar('\n');
-	ft_free_tab(tab);
 }
 
 static void	ft_find(const char **input, char *flags, int nbr_arg, int pos)

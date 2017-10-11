@@ -1,5 +1,14 @@
 #include "ft_ls.h"
 
+long		ft_file_size(const char *path)
+{
+	s_stat	stats;
+
+	if (lstat(path, &stats) < 0)
+		ft_perror("");
+	return ((long)stats.st_size);
+}
+
 int			ft_len_min_max(const char *path)
 {
 	int		ret;
@@ -8,17 +17,6 @@ int			ft_len_min_max(const char *path)
 	ret += ft_nbrlen(ft_data_minor(path));
 	ret += ft_nbrlen(ft_data_major(path));
 	ret += 3;
-	return (ret);
-}
-
-int			ft_data_nlink(const char *path)
-{
-	s_stat	stats;
-	int		ret;
-
-	if (lstat(path, &stats) < 0)
-		ft_perror("");
-	ret = (int)stats.st_nlink;
 	return (ret);
 }
 

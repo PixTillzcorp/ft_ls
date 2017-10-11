@@ -22,9 +22,12 @@ void		ft_free_tab(char **tab)
 	int		i;
 
 	i = 0;
-	while(tab[i])
-		ft_memdel((void **)&tab[i++]);
-	ft_memdel((void **)&tab[i]);
-	free(tab);
-	tab = NULL;
+	if (tab[i])
+	{
+		while(tab[i])
+			ft_memdel((void **)&tab[i++]);
+		ft_memdel((void **)&tab[i]);
+		free(tab);
+		tab = NULL;
+	}
 }

@@ -1,12 +1,28 @@
 #include "ft_ls.h"
 
-static void	ft_swap_chr(char **a, char **b)
+static void	ft_sort_size(char **tab)
 {
-	char	*swap;
+	long	size_f;
+	long	comp;
+	int		i;
+	int		j;
 
-	swap = *a;
-	*a = *b;
-	*b = swap;
+	i = 0;
+	while (tab[i])
+	{
+		j = i;
+		comp = ft_file_size(tab[i]);
+		while (tab[j])
+		{
+			if (comp < (size_f = ft_file_size(tab[j])))
+			{
+				comp = size_f;
+				ft_swap_chr(&tab[i], &tab[j]);
+			}
+			j++;
+		}
+		i++;
+	}
 }
 
 static void	ft_rev_sort(char **tab)
@@ -76,6 +92,8 @@ static void	ft_sort_time(char **tab)
 char		**ft_sort_tab(char **tab, char *flags)
 {
 	ft_sort_abc(tab);
+	if (ft_strchr(flags, 'S'))
+		ft_sort_size(tab);
 	if (ft_strchr(flags, 't'))
 		ft_sort_time(tab);
 	if (ft_strchr(flags, 'r'))

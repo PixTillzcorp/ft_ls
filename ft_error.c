@@ -7,7 +7,7 @@ void		ft_error(const char *msg, int usage)
 	if (msg)
 		ft_memdel((void **)&msg);
 	if (usage)
-		printf("usage : ft_ls [-Ralrt] [file ...]");
+		printf("usage : ft_ls [-1RalrtS] [file ...]");
 	exit(-1);
 }
 

@@ -14,13 +14,14 @@ static void		ft_padding_out(char **tab, char *flags, int pos)
 		{
 			tab_add = tab;
 			len = ft_lenmax_name(tab) + 2;
-			output = ft_get_winsize() / len;
+			if (!(output = ft_get_winsize() / len))
+				output = 1;
 		}
 		if (pos % output == 0)
 			ft_putchar('\n');
 		else
 			ft_putxchar(' ', len - ft_strlen(ft_data_name(tab[pos - 1])));
-		if (tab[pos] == NULL)
+		if (tab[pos] == NULL && output != 1)
 			ft_putchar('\n');
 	}
 }

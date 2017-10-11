@@ -77,6 +77,7 @@ char			*ft_data_name(const char *path);
 char			*ft_data_uid(const char *path, int len);
 char			*ft_data_gid(const char *path, int len);
 
+long			ft_file_size(const char *path);
 char			*ft_data_size(const char *path, int len);
 
 char			**ft_init_tab(int size);
