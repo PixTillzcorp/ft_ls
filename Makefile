@@ -57,12 +57,12 @@ re_done:
 gadd:
 	@ echo "$(BLUE)$(FONT_NOIR)Adding modified files }~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~$(NORMAL)"
 	@ git add $(shell git status | grep modified | rev | cut -d' ' -f1 | rev | tr '\n' ' ' | rev | cut -d' ' -f2- | rev)
-	@ echo "$(GREEN)$(FONT_NOIR)$(shell git status | grep modified | cut -f2)\t$(YELLOW)[$(GREEN)\xe2\x9c\x94$(YELLOW)]$(NORMAL)"
+	@ echo "$(PINK)$(FONT_NOIR)$(shell git status | grep modified | cut -f2)\t$(PINK)[$(GREEN)\xe2\x9c\x94$(PINK)]$(NORMAL)"
 	@ echo "$(BLUE)$(FONT_NOIR)~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{ Adding Complete[$(GREEN)\xe2\x9c\x94$(BLUE)]$(NORMAL)"
 
 commit:
-	@ echo "$(YELLOW)$(FONT_NOIR)commit changes \t\t[$(GREEN)\xe2\x9c\x94$(YELLOW)]$(NORMAL)"
-	@ echo "$(YELLOW)$(FONT_NOIR)$(shell git commit -m "automatic commit from Makefile" | grep 1)$(NORMAL)"
+	@ echo "$(PINK)$(FONT_NOIR)commit changes \t\t[$(GREEN)\xe2\x9c\x94$(PINK)]$(NORMAL)"
+	@ echo "$(PINK)$(FONT_NOIR)$(shell git commit -m "automatic commit from Makefile" | grep 1)$(NORMAL)"
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~
 
