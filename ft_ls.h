@@ -53,8 +53,8 @@ int				ft_disp_dir(const char *path, char *flags, int nbr_dir);
 
 void			ft_print_sort(char **tab, char *flags, int single);
 void			ft_print_large(const char *path, char *flags, t_pad padding);
-int				ft_print_single(const char *path, int large);
 
+int				ft_a_or_f(char *flags);
 int				ft_is_l(const char *path);
 int				ft_is_bc(const char *path);
 char			ft_data_type(mode_t type);

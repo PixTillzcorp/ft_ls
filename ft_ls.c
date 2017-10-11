@@ -1,5 +1,21 @@
 #include "ft_ls.h"
 
+static void	ft_print_single(const char *path, char *flags)
+{
+	char 	**tab;
+	t_pad	padding;
+
+	if (ft_strchr(flags, 'l'))
+	{
+		tab = ft_init_tab(1);
+		tab[0] = ft_strdup(path);
+		padding = ft_padding(tab);
+		ft_print_large(path, flags, padding);
+		ft_free_tab(tab);
+	}
+	ft_putstr(".\n");
+}
+
 static void	ft_insert(char **tab, char *str)
 {
 	int		i;
@@ -21,7 +37,7 @@ static void	ft_single_file(const char **input, char *flags, int nbr, int pos)
 	ft_check_input(input, nbr, pos);
 	while (pos < nbr)
 	{
-		if (!ft_isdir(input[pos++]))
+		if (!ft_isdir(input[pos++]) || ft_strchr(flags, 'd'))
 			size++;
 	}
 	if (size)
@@ -30,7 +46,7 @@ static void	ft_single_file(const char **input, char *flags, int nbr, int pos)
 		pos = tmp;
 		while (pos < nbr)
 		{
-			if (!ft_isdir(input[pos]))
+			if (!ft_isdir(input[pos]) || ft_strchr(flags, 'd'))
 				ft_insert(tab, (char *)(input[pos]));
 			pos++;
 		}
@@ -44,17 +60,20 @@ static void	ft_single_file(const char **input, char *flags, int nbr, int pos)
 static void	ft_find(const char **input, char *flags, int nbr_arg, int pos)
 {
 	ft_single_file(input, flags, nbr_arg, pos);
-	while (pos < nbr_arg)
+	if (!ft_strchr(flags, 'd'))
 	{
-		if (ft_isdir(input[pos]))
+		while (pos < nbr_arg)
 		{
-			ft_disp_dir(input[pos], flags, ft_nbrdir(input, nbr_arg));
-			if (pos + 1 < nbr_arg)
-				ft_putchar('\n');
-			pos++;
+			if (ft_isdir(input[pos]))
+			{
+				ft_disp_dir(input[pos], flags, ft_nbrdir(input, nbr_arg));
+				if (pos + 1 < nbr_arg)
+					ft_putchar('\n');
+				pos++;
+			}
+			else
+				pos++;
 		}
-		else
-			pos++;
 	}
 }
 
@@ -73,7 +92,12 @@ int			main(int argc, const char **argv)
 	else
 		dir = ft_flag(argv, &flags);
 	if (dir < 0)
-		ft_disp_dir(".", flags, 0);
+	{
+		if (ft_strchr(flags, 'd'))
+			ft_print_single(".", flags);
+		else
+			ft_disp_dir(".", flags, 0);
+	}
 	else
 		ft_find(argv, flags, argc, dir);
 	return (ft_ret_free(flags, 0));

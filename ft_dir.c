@@ -30,7 +30,7 @@ static void	ft_rec_disp(const char *path, char *flags, int nbr_dir)
 	{
 		if (n_path)
 			ft_memdel((void **)&n_path);
-		if (file->d_name[0] == '.' && !ft_strchr(flags, 'a'))
+		if (file->d_name[0] == '.' && !ft_a_or_f(flags))
 			continue ;
 		n_path = ft_newpath(n_path, path, file->d_name);
 		if (!ft_is_l(n_path) && ft_isdir(n_path) &&\
@@ -65,16 +65,16 @@ int			ft_disp_dir(const char *path, char *flags, int nbr_dir)
 
 	if (!(rep = ft_opendir(path)))
 		return (0);
-	tab = ft_init_tab(ft_nbrfile(path, (int)(ft_strchr(flags, 'a'))));
+	tab = ft_init_tab(ft_nbrfile(path, ft_a_or_f(flags)));
 	if (ft_strcmp(path, ".") && nbr_dir > 1)
 		ft_printf("%s:\n", path);
-	if (ft_nbrfile(path, (int)(ft_strchr(flags, 'a'))) == 0)
+	if (ft_nbrfile(path, ft_a_or_f(flags)) == 0)
 		ft_putstr("(empty directory)\n");
 	else
 	{
 		while ((file = readdir(rep)))
 		{
-			if (file->d_name[0] == '.' && !ft_strchr(flags, 'a'))
+			if (file->d_name[0] == '.' && !ft_a_or_f(flags))
 				continue;
 			ft_put_in_tab(tab, path, file->d_name);
 		}

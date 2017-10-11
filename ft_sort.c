@@ -91,12 +91,15 @@ static void	ft_sort_time(char **tab)
 
 char		**ft_sort_tab(char **tab, char *flags)
 {
-	ft_sort_abc(tab);
-	if (ft_strchr(flags, 'S'))
-		ft_sort_size(tab);
-	if (ft_strchr(flags, 't'))
-		ft_sort_time(tab);
-	if (ft_strchr(flags, 'r'))
-		ft_rev_sort(tab);
+	if (!ft_strchr(flags, 'f'))
+	{
+		ft_sort_abc(tab);
+		if (ft_strchr(flags, 'S'))
+			ft_sort_size(tab);
+		if (ft_strchr(flags, 't'))
+			ft_sort_time(tab);
+		if (ft_strchr(flags, 'r'))
+			ft_rev_sort(tab);
+	}
 	return (tab);
 }
