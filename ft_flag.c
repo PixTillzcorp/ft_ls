@@ -22,7 +22,7 @@ static int	ft_is_flag(char c)
 	ret += (c == 'l' || c == 'a' || c == 'g' ? 1 : 0);
 	ret += (c == 'r' || c == 't' || c == 'S' ? 1 : 0);
 	ret += (c == 'R' || c == '1' || c == 'f' ? 1 : 0);
-	ret += (c == 'd' ? 1 : 0);
+	ret += (c == 'd' || c == 'G' ? 1 : 0);
 	return (ret);
 }
 

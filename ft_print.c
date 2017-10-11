@@ -1,5 +1,33 @@
 #include "ft_ls.h"
 
+static void		ft_colored_output(const char *path, char *flags, mode_t st_mode)
+{
+	char		type;
+
+	if (ft_strchr(flags, 'G'))
+	{
+		type = ft_data_type(st_mode & S_IFMT);
+		if (type == 'd')
+			ft_putstr_clrd(ft_data_name(path), "\033[36m");
+		else if (type == 'l')
+			ft_putstr_clrd(ft_data_name(path), "\033[35m");
+		else if (type == 'b')
+			ft_putstr_clrd(ft_data_name(path), "\033[34m\033[46m");
+		else if (type == 'c')
+			ft_putstr_clrd(ft_data_name(path), "\033[34m\033[43m");
+		else if (type == 'p')
+			ft_putstr_clrd(ft_data_name(path), "\033[33m");
+		else if (type == 's')
+			ft_putstr_clrd(ft_data_name(path), "\033[32m");
+		else if (type == '-' && (S_IEXEC & st_mode))
+			ft_putstr_clrd(ft_data_name(path), "\033[31m");
+		else
+			ft_putstr(ft_data_name(path));
+	}
+	else
+		ft_putstr(ft_data_name(path));
+}
+
 static void		ft_padding_out(char **tab, char *flags, int pos)
 {
 	static char	**tab_add;
@@ -92,7 +120,7 @@ void			ft_print_sort(char **tab, char *flags, int single)
 			ft_perror("");
 		if (ft_strchr(flags, 'l'))
 			ft_print_large(tab[i], flags, padding);
-		ft_putstr(ft_data_name(tab[i]));
+		ft_colored_output(tab[i], flags, stats.st_mode); //colored output ?
 		if (readlink(tab[i++], buff, 100) > 0 && ft_strchr(flags, 'l'))
 			ft_printf(" -> %s", buff);
 		ft_padding_out(tab, flags, i);

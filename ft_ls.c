@@ -13,7 +13,10 @@ static void	ft_print_single(const char *path, char *flags)
 		ft_print_large(path, flags, padding);
 		ft_free_tab(tab);
 	}
-	ft_putstr(".\n");
+	if (ft_strchr(flags, 'G'))
+		ft_putstr("\033[36m.\033[0m\n");
+	else
+		ft_putstr(".\n");
 }
 
 static void	ft_insert(char **tab, char *str)
