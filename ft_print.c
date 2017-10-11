@@ -43,12 +43,15 @@ static int		ft_total_blocks(char **tab)
 	return (ret);
 }
 
-void			ft_print_large(const char *path, t_pad padding)
+void			ft_print_large(const char *path, char *flags, t_pad padding)
 {
 	ft_putstr_free(ft_data_wrx(path), 1);
 	ft_printf("%4d ", ft_data_nlink(path));
-	ft_putstr_free(ft_data_uid(path, padding.n_uid), 1);
-	ft_putchar(' ');
+	if (!ft_strchr(flags, 'g'))
+	{
+		ft_putstr_free(ft_data_uid(path, padding.n_uid), 1);
+		ft_putchar(' ');
+	}
 	ft_putstr_free(ft_data_gid(path, padding.n_gid), 1);
 	ft_putchar(' ');
 	if (ft_is_bc(path))
@@ -88,7 +91,7 @@ void			ft_print_sort(char **tab, char *flags, int single)
 		if (lstat(tab[i], &stats) < 0)
 			ft_perror("");
 		if (ft_strchr(flags, 'l'))
-			ft_print_large(tab[i], padding);
+			ft_print_large(tab[i], flags, padding);
 		ft_putstr(ft_data_name(tab[i]));
 		if (readlink(tab[i++], buff, 100) > 0 && ft_strchr(flags, 'l'))
 			ft_printf(" -> %s", buff);

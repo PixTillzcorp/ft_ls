@@ -5,9 +5,9 @@ static int	ft_is_flag(char c)
 	int		ret;
 
 	ret = 0;
-	ret += (c == 'l' || c == 'a' ? 1 : 0);
-	ret += (c == 'R' || c == '1' ? 1 : 0);
+	ret += (c == 'l' || c == 'a' || c == 'g' ? 1 : 0);
 	ret += (c == 'r' || c == 't' || c == 'S' ? 1 : 0);
+	ret += (c == 'R' || c == '1' || c == 'f' ? 1 : 0);
 	return (ret);
 }
 
