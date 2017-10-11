@@ -53,7 +53,7 @@ re_done:
 	@ echo "$(BLUE)$(FONT_NOIR)~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{ Reset Complete[$(GREEN)\xe2\x9c\x94$(BLUE)]$(NORMAL)"
 
 #~~~~~RULES FOR GIT~~~~~~~~
-
+ 
 gadd:
 	@ echo "$(BLUE)$(FONT_NOIR)Adding modified files }~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~$(NORMAL)"
 	@ git add $(shell git status | grep modified | rev | cut -d' ' -f1 | rev | tr '\n' ' ' | rev | cut -d' ' -f2- | rev)
@@ -62,7 +62,7 @@ gadd:
 
 commit:
 	@ echo "$(PINK)$(FONT_NOIR)commit changes \t\t[$(GREEN)\xe2\x9c\x94$(PINK)]$(NORMAL)"
-	@ echo "$(PINK)$(FONT_NOIR)$(shell git commit -m "automatic commit from Makefile" | grep 1)$(NORMAL)"
+	@ echo "$(PINK)$(FONT_NOIR)$(shell git commit -m "automatic commit from Makefile" | grep files)$(NORMAL)"
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~
 
