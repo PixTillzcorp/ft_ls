@@ -92,7 +92,7 @@ void			ft_print_sort(char **tab, char *flags, int single)
 		ft_putstr(ft_data_name(tab[i]));
 		if (readlink(tab[i++], buff, 100) > 0 && ft_strchr(flags, 'l'))
 			ft_printf(" -> %s", buff);
-		ft_padding_out(tab, flags, i); //padding -1
+		ft_padding_out(tab, flags, i);
 		free(buff);
 	}
 }
