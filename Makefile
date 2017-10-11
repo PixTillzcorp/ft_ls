@@ -62,7 +62,7 @@ gadd:
 
 commit:
 	@ echo "$(YELLOW)$(FONT_NOIR)commit changes [$(GREEN)\xe2\x9c\x94$(YELLOW)]$(NORMAL)"
-	@ git commit -m "automatic commit from Makefile" | grep 1
+	@ echo "$(YELLOW)$(FONT_NOIR)$(shell git commit -m "automatic commit from Makefile" | grep 1)$(NORMAL)"
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~
 
