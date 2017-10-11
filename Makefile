@@ -53,11 +53,11 @@ re_done:
 	@ echo "$(BLUE)$(FONT_NOIR)~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{ Reset Complete[$(GREEN)\xe2\x9c\x94$(BLUE)]$(NORMAL)"
 
 #~~~~~RULES FOR GIT~~~~~~~~
- 
+
 gadd:
 	@ echo "$(BLUE)$(FONT_NOIR)Adding modified files }~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~$(NORMAL)"
 	@ git add $(shell git status | grep modified | rev | cut -d' ' -f1 | rev | tr '\n' ' ' | rev | cut -d' ' -f2- | rev)
-	@ echo "$(PINK)$(FONT_NOIR)$(shell git status | grep modified | cut -f2 | tr ' ' '\n')\t$(PINK)[$(GREEN)\xe2\x9c\x94$(PINK)]$(NORMAL)"
+	@ echo "$(PINK)$(FONT_NOIR)$(shell git status | grep modified | tr -s ' ' | cut -d' ' -f2 | tr ' ' '\n')\t$(PINK)[$(GREEN)\xe2\x9c\x94$(PINK)]$(NORMAL)"
 	@ echo "$(BLUE)$(FONT_NOIR)~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{ Adding Complete[$(GREEN)\xe2\x9c\x94$(BLUE)]$(NORMAL)"
 
 commit:
