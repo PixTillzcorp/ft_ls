@@ -59,7 +59,7 @@ DIR			*ft_opendir(const char *path)
 	{
 		if (errno == ENOTDIR)
 			return (NULL);
-		perror("");
+		perror(path);
 		exit(-1);
 	}
 	return (ret);

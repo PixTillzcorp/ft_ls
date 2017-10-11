@@ -80,6 +80,7 @@ char			*ft_data_gid(const char *path, int len);
 long			ft_file_size(const char *path);
 char			*ft_data_size(const char *path, int len);
 
+void			ft_insert(char **tab, char *str);
 char			**ft_init_tab(int size);
 char			**ft_put_in_tab(char **tab, const char *path, char *name);
 void			ft_free_tab(char **tab);

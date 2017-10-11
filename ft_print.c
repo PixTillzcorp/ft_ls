@@ -84,10 +84,10 @@ void			ft_print_large(const char *path, char *flags, t_pad padding)
 	ft_putchar(' ');
 	if (ft_is_bc(path))
 	{
-		ft_putxchar(' ', (padding.b_size / 2) - ft_printf("%d",\
+		ft_putxchar(' ', (padding.b_size / 2) - 1 - ft_printf("%d",\
 		ft_data_major(path)));
 		ft_putchar(',');
-		ft_putxchar(' ', (padding.b_size / 2) + (padding.b_size % 2) - 1\
+		ft_putxchar(' ', (padding.b_size / 2) + (padding.b_size % 2)\
 		- ft_printf(" %d", ft_data_major(path)));
 		ft_putchar(' ');
 	}

@@ -1,5 +1,15 @@
 #include "ft_ls.h"
 
+void		ft_insert(char **tab, char *str)
+{
+	int		i;
+
+	i = 0;
+	while (tab[i])
+		i++;
+	tab[i] = ft_strdup(str);
+}
+
 char		**ft_init_tab(int size)
 {
 	char	**ret;

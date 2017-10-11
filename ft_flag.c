@@ -39,7 +39,13 @@ int			ft_flag(const char **args, char **flag)
 		{
 			while (ft_is_flag(args[i][j]))
 				(*flag) = ft_chrjoin_free((*flag), args[i][j++], 1);
-			if (args[i][j])
+			if (args[i][j] == '-')
+			{
+				free(*flag);
+				*flag = ft_strdup("");
+				return ((args[i + 1] ? i + 1 : -1));
+			}
+			else if (args[i][j])
 				ft_error(ft_chrjoin_free("ft_ls : illegal option -- ", args[i][j], 0), 1);
 			i++;
 			j = 1;
