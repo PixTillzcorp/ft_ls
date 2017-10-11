@@ -57,7 +57,7 @@ re_done:
 gadd:
 	@ echo "$(BLUE)$(FONT_NOIR)Adding modified files }~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~$(NORMAL)"
 	@ git add $(shell git status | grep modified | rev | cut -d' ' -f1 | rev | tr '\n' ' ' | rev | cut -d' ' -f2- | rev)
-	@ git status
+	@ git status | grep modified
 	@ echo "$(BLUE)$(FONT_NOIR)~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{ Adding Complete[$(GREEN)\xe2\x9c\x94$(BLUE)]$(NORMAL)"
 
 commit:
