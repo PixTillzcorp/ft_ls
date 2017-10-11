@@ -59,8 +59,10 @@ int				ft_is_l(const char *path);
 int				ft_is_bc(const char *path);
 char			ft_data_type(mode_t type);
 
+int				ft_get_winsize(void);
 t_pad			ft_padding(char **tab);
 
+int				ft_lenmax_name(char **tab);
 int				ft_len_min_max(const char *path);
 int				ft_data_minor(const char *path);
 int				ft_data_major(const char *path);

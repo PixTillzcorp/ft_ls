@@ -1,10 +1,35 @@
 #include "ft_ls.h"
 
-static int	ft_total_blocks(char **tab)
+static void		ft_padding_out(char **tab, char *flags, int pos)
 {
-	s_stat	stats;
-	int		i;
-	int		ret;
+	static char	**tab_add;
+	static int	len;
+	static int	output;
+
+	if (ft_strchr(flags, 'l') || ft_strchr(flags, '1'))
+		ft_putchar('\n');
+	else
+	{
+		if (tab_add != tab)
+		{
+			tab_add = tab;
+			len = ft_lenmax_name(tab) + 2;
+			output = ft_get_winsize() / len;
+		}
+		if (pos % output == 0)
+			ft_putchar('\n');
+		else
+			ft_putxchar(' ', len - ft_strlen(ft_data_name(tab[pos - 1])));
+		if (tab[pos] == NULL)
+			ft_putchar('\n');
+	}
+}
+
+static int		ft_total_blocks(char **tab)
+{
+	s_stat		stats;
+	int			i;
+	int			ret;
 
 	i = 0;
 	ret = 0;
@@ -17,7 +42,7 @@ static int	ft_total_blocks(char **tab)
 	return (ret);
 }
 
-void		ft_print_large(const char *path, t_pad padding)
+void			ft_print_large(const char *path, t_pad padding)
 {
 	ft_putstr_free(ft_data_wrx(path), 1);
 	ft_printf("%4d ", ft_data_nlink(path));
@@ -43,12 +68,12 @@ void		ft_print_large(const char *path, t_pad padding)
 	ft_putchar(' ');
 }
 
-void		ft_print_sort(char **tab, char *flags, int single)
+void			ft_print_sort(char **tab, char *flags, int single)
 {
-	t_pad	padding;
-	s_stat	stats;
-	char	*buff;
-	int		i;
+	t_pad		padding;
+	s_stat		stats;
+	char		*buff;
+	int			i;
 
 	i = 0;
 	if (ft_strchr(flags, 'l') && !single)
@@ -64,9 +89,9 @@ void		ft_print_sort(char **tab, char *flags, int single)
 		if (ft_strchr(flags, 'l'))
 			ft_print_large(tab[i], padding);
 		ft_putstr(ft_data_name(tab[i]));
-		if (readlink(tab[i++], buff, 100) > 0)
+		if (readlink(tab[i++], buff, 100) > 0 && ft_strchr(flags, 'l'))
 			ft_printf(" -> %s", buff);
-		ft_putchar('\n');
+		ft_padding_out(tab, flags, i); //padding -1
 		free(buff);
 	}
 }

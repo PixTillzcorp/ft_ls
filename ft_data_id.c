@@ -1,5 +1,22 @@
 #include "ft_ls.h"
 
+int			ft_lenmax_name(char **tab)
+{
+	int		len;
+	int		ret;
+	int		i;
+
+	i = 0;
+	ret = 0;
+	while (tab[i])
+	{
+		len = ft_strlen(ft_data_name(tab[i++]));
+		if (ret < len)
+			ret = len;
+	}
+	return (ret);
+}
+
 char		*ft_data_name(const char *path)
 {
 	char	*ret;

@@ -72,6 +72,15 @@ static int	ft_padd_size(char **tab)
 	return (ret);
 }
 
+int			ft_get_winsize(void)
+{
+	s_ws	win;
+
+	if (ioctl(0, TIOCGWINSZ, &win) < 0)
+		ft_perror("ioctl");
+	return (win.ws_col);
+}
+
 t_pad		ft_padding(char **tab)
 {
 	t_pad	padding;
@@ -81,27 +90,3 @@ t_pad		ft_padding(char **tab)
 	padding.b_size = ft_padd_size(tab);
 	return (padding);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
