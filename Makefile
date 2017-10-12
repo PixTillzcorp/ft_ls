@@ -75,7 +75,7 @@ lib_re:
 %.o: %.c
 	@ $(CC) $(CFLAGS) -c $(SRCC)
 
-$(NAME): $(SRCO)
+$(NAME): $(SRCO) ft_ls.h
 	@ echo "$(PINK)$(FONT_NOIR).o successfully created\t\t\t[$(GREEN)\xe2\x9c\x94$(PINK)]$(NORMAL)"
 	@ $(CC) $(CFLAGS) -o $(NAME) $(SRCO) $(LIB_SRC)
 	@ echo "$(PINK)$(FONT_NOIR)Compilation of $(NAME)\t\t\t[$(GREEN)\xe2\x9c\x94$(PINK)]$(NORMAL)"

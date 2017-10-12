@@ -19,7 +19,9 @@ static char		*ft_newpath(char *dest, const char *p, const char *d)
 
 	i = 0;
 	j = 0;
-	dest = (char *)malloc(sizeof(char) * (ft_strlen(p) + ft_strlen(d) + 2));
+	if (!(dest = (char *)malloc(sizeof(char) * (ft_strlen(p) +\
+	ft_strlen(d) + 2))))
+		ft_perror(ft_strdup("ft_ls "));
 	while (p[i])
 		dest[j++] = p[i++];
 	dest[j++] = '/';

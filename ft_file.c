@@ -51,7 +51,7 @@ int			ft_nbrfile(const char *path, int a)
 
 	count = 0;
 	if (!(rep = opendir(path)))
-		exit(-1);
+		exit(EXIT_FAILURE);
 	while ((file = readdir(rep)))
 	{
 		if (file->d_name[0] == '.' && !a)
@@ -59,7 +59,7 @@ int			ft_nbrfile(const char *path, int a)
 		count++;
 	}
 	if (closedir(rep) < 0)
-		exit(-1);
+		exit(EXIT_FAILURE);
 	return (count);
 }
 
@@ -69,10 +69,15 @@ DIR			*ft_opendir(const char *path)
 
 	if (!(ret = opendir(path)))
 	{
+		if (errno == EACCES)
+		{
+			perror(path);
+			return (NULL);
+		}
 		if (errno == ENOTDIR)
 			return (NULL);
 		perror(path);
-		exit(-1);
+		exit(EXIT_FAILURE);
 	}
 	return (ret);
 }
@@ -82,7 +87,7 @@ int			ft_closedir(DIR *op_dir)
 	if (closedir(op_dir) < 0)
 	{
 		perror("");
-		exit(-1);
+		exit(EXIT_FAILURE);
 	}
 	return (0);
 }

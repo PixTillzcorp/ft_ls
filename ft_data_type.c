@@ -36,7 +36,7 @@ int			ft_is_bc(const char *path)
 	t_stat	stats;
 
 	if (lstat(path, &stats) < 0)
-		ft_perror("");
+		ft_perror(ft_strdup("ft_ls "));
 	if (ft_data_type(stats.st_mode & S_IFMT) == 'b')
 		return (1);
 	if (ft_data_type(stats.st_mode & S_IFMT) == 'c')
@@ -49,7 +49,7 @@ int			ft_is_l(const char *path)
 	t_stat	stats;
 
 	if (lstat(path, &stats) < 0)
-		ft_perror("");
+		ft_perror(ft_strdup("ft_ls "));
 	if (ft_data_type(stats.st_mode & S_IFMT) == 'l')
 		return (1);
 	return (0);
@@ -64,5 +64,7 @@ int			ft_isdir(const char *path)
 		closedir(is_dir);
 		return (1);
 	}
+	if (errno == EACCES)
+		return (1);
 	return (0);
 }

@@ -77,7 +77,14 @@ static void	ft_single_file(const char **input, char *flags, int nbr, int pos)
 
 static void	ft_find(const char **input, char *flags, int nbr_arg, int pos)
 {
-	ft_check_input(input, nbr_arg, pos);
+	int		i;
+
+	i = 0;
+	while (input[pos + i])
+	{
+		if (!ft_check_input(input[pos + (i++)], flags))
+			input[pos + (i - 1)] = NULL;
+	}
 	ft_single_file(input, flags, nbr_arg, pos);
 	if (!ft_strchr(flags, 'd'))
 	{

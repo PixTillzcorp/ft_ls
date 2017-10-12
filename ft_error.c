@@ -12,7 +12,7 @@
 
 #include "ft_ls.h"
 
-void		ft_error(const char *msg, int usage)
+void	ft_error(const char *msg, int usage)
 {
 	ft_putstr("ft_ls : ");
 	ft_putstr(msg);
@@ -21,24 +21,39 @@ void		ft_error(const char *msg, int usage)
 		ft_memdel((void **)&msg);
 	if (usage)
 		printf("usage : ft_ls [-1GRSafglrt] [file ...]");
-	exit(-1);
+	exit(EXIT_FAILURE);
 }
 
-void		ft_check_input(const char **input, int nbr_arg, int pos)
+int		ft_check_input(const char *path, char *flags)
 {
-	DIR		*test;
+	DIR	*test;
 
-	while (pos < nbr_arg)
+	if ((test = opendir(path)))
+		ft_closedir(test);
+	else
 	{
-		if ((test = ft_opendir(input[pos++])))
-			ft_closedir(test);
+		if (ft_strchr(flags, 'd'))
+			return (1);
+		else if (errno == EACCES)
+		{
+			ft_putstr("ft_ls : ");
+			perror(path);
+			return (0);
+		}
+		else
+		{
+			ft_putstr("ft_ls : ");
+			perror(path);
+			return (0);
+		}
 	}
+	return (1);
 }
 
-void		ft_perror(const char *msg)
+void	ft_perror(const char *msg)
 {
 	perror(msg);
 	if (msg)
 		ft_memdel((void **)&msg);
-	exit(-1);
+	exit(EXIT_FAILURE);
 }

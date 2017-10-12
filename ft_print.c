@@ -77,7 +77,7 @@ static int		ft_total_blocks(char **tab)
 	while (tab[i])
 	{
 		if (lstat(tab[i++], &stats) < 0)
-			ft_perror("");
+			ft_perror(ft_strdup("ft_ls "));
 		ret += (int)stats.st_blocks;
 	}
 	return (ret);
@@ -126,10 +126,10 @@ void			ft_print_sort(char **tab, char *flags, int single)
 	while (tab[i])
 	{
 		if (!(buff = (char *)ft_memalloc(sizeof(char) * 100)))
-			ft_perror("");
+			ft_perror(ft_strdup("ft_ls "));
 		buff[99] = '\0';
 		if (lstat(tab[i], &stats) < 0)
-			ft_perror("");
+			ft_perror(ft_strdup("ft_ls "));
 		if (ft_strchr(flags, 'l'))
 			ft_print_large(tab[i], flags, padding);
 		ft_colored_output(tab[i], flags, stats.st_mode);

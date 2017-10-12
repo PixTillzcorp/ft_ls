@@ -51,7 +51,7 @@ DIR				*ft_opendir(const char *path);
 
 void			ft_error(const char *msg, int usage);
 void			ft_perror(const char *msg);
-void			ft_check_input(const char **input, int nbr_arg, int pos);
+int				ft_check_input(const char *path, char *flags);
 
 int				ft_llnbrlen(long long nbr);
 

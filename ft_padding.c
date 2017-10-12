@@ -24,7 +24,7 @@ static int	ft_padd_uid(char **tab)
 	while (tab[i])
 	{
 		if (lstat(tab[i++], &stats) < 0)
-			ft_perror("");
+			ft_perror(ft_strdup("ft_ls "));
 		if (!(usr = getpwuid(stats.st_uid)))
 		{
 			if (ret < ft_nbrlen((int)stats.st_uid))
@@ -48,7 +48,7 @@ static int	ft_padd_gid(char **tab)
 	while (tab[i])
 	{
 		if (lstat(tab[i++], &stats) < 0)
-			ft_perror("");
+			ft_perror(ft_strdup("ft_ls "));
 		if (!(grp = getgrgid(stats.st_gid)))
 		{
 			if (ret < ft_nbrlen((int)stats.st_gid))
@@ -71,7 +71,7 @@ static int	ft_padd_size(char **tab)
 	while (tab[i])
 	{
 		if (lstat(tab[i], &stats) < 0)
-			ft_perror("");
+			ft_perror(ft_strdup("ft_ls "));
 		if (ft_is_bc(tab[i]))
 		{
 			if (ret < ft_len_min_max(tab[i]))
