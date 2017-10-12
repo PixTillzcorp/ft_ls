@@ -32,33 +32,23 @@ static char		*ft_newpath(char *dest, const char *p, const char *d)
 	return (dest);
 }
 
-static void		ft_rec_disp(const char *path, char *flags, int nbr_dir)
+static void		ft_rec_disp(char **tab, char *flags, int nbr_dir)
 {
-	DIR			*rep;
-	t_dir		*file;
-	char		*n_path;
+	int			i;
 
-	n_path = NULL;
-	rep = ft_opendir(path);
-	while ((file = readdir(rep)))
+	i = 0;
+	while (tab[i])
 	{
-		if (n_path)
-			ft_memdel((void **)&n_path);
-		if (file->d_name[0] == '.' && !ft_a_or_f(flags))
-			continue ;
-		n_path = ft_newpath(n_path, path, file->d_name);
-		if (!ft_is_l(n_path) && ft_isdir(n_path) &&\
-		ft_strcmp(file->d_name, ".") && ft_strcmp(file->d_name, ".."))
+		if (!ft_is_l(tab[i]) && ft_isdir(tab[i]) && ft_strcmp(ft_data_name(\
+		tab[i]), ".") && ft_strcmp(ft_data_name(tab[i]), ".."))
 		{
 			ft_putchar('\n');
-			ft_putstr(n_path);
+			ft_putstr(tab[i]);
 			ft_putstr(":\n");
-			ft_disp_dir(n_path, flags, nbr_dir);
+			ft_disp_dir(tab[i], flags, nbr_dir);
 		}
+		i++;
 	}
-	ft_closedir(rep);
-	if (n_path)
-		ft_memdel((void **)&n_path);
 }
 
 char			**ft_put_in_tab(char **tab, const char *path, char *name)
@@ -95,7 +85,7 @@ int				ft_disp_dir(const char *path, char *flags, int nbr_dir)
 		}
 		ft_print_sort(ft_sort_tab(tab, flags), flags, 0);
 		if (strchr(flags, 'R'))
-			ft_rec_disp(path, flags, nbr_dir);
+			ft_rec_disp(tab, flags, nbr_dir);
 	}
 	ft_free_tab(tab);
 	return (ft_closedir(rep));

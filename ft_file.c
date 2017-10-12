@@ -37,8 +37,9 @@ int			ft_nbrdir(const char **input, int argc)
 	count = 0;
 	while (i < argc)
 	{
-		if (ft_isdir(input[i++]))
+		if (ft_isdir(input[i]) || !input[i])
 			count++;
+		i++;
 	}
 	return (count);
 }
@@ -71,11 +72,13 @@ DIR			*ft_opendir(const char *path)
 	{
 		if (errno == EACCES)
 		{
+			ft_putstr("ft_ls : ");
 			perror(path);
 			return (NULL);
 		}
 		if (errno == ENOTDIR)
 			return (NULL);
+		ft_putstr("ft_ls : ");
 		perror(path);
 		exit(EXIT_FAILURE);
 	}

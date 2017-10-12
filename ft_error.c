@@ -32,7 +32,7 @@ int		ft_check_input(const char *path, char *flags)
 		ft_closedir(test);
 	else
 	{
-		if (ft_strchr(flags, 'd'))
+		if (ft_strchr(flags, 'd') || errno == ENOTDIR)
 			return (1);
 		else if (errno == EACCES)
 		{
