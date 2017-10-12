@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_data_id.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: heinfalt <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/10/12 13:12:25 by heinfalt          #+#    #+#             */
+/*   Updated: 2017/10/12 13:12:29 by heinfalt         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_ls.h"
 
 int			ft_data_nlink(const char *path)
 {
-	s_stat	stats;
+	t_stat	stats;
 	int		ret;
 
 	if (lstat(path, &stats) < 0)
@@ -42,8 +54,8 @@ char		*ft_data_name(const char *path)
 
 char		*ft_data_uid(const char *path, int len)
 {
-	s_stat	stats;
-	s_pwd	*usr;
+	t_stat	stats;
+	t_pwd	*usr;
 	char	*ret;
 	int		i;
 
@@ -70,8 +82,8 @@ char		*ft_data_uid(const char *path, int len)
 
 char		*ft_data_gid(const char *path, int len)
 {
-	s_stat	stats;
-	s_grp	*grp;
+	t_stat	stats;
+	t_grp	*grp;
 	char	*ret;
 	int		i;
 

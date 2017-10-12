@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_data_rights.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: heinfalt <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/10/12 13:12:31 by heinfalt          #+#    #+#             */
+/*   Updated: 2017/10/12 13:12:54 by heinfalt         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_ls.h"
 
 static char	*ft_get_rights(mode_t rights)
@@ -27,7 +39,7 @@ static char	*ft_get_rights(mode_t rights)
 
 char		*ft_data_wrx(const char *path)
 {
-	s_stat	stats;
+	t_stat	stats;
 	mode_t	rights;
 	char	*buff;
 	char	*tmp;

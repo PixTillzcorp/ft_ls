@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_ls.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: heinfalt <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/10/12 13:34:20 by heinfalt          #+#    #+#             */
+/*   Updated: 2017/10/12 13:34:27 by heinfalt         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FT_LS_H
 # define FT_LS_H
 
@@ -14,21 +26,16 @@
 # include <pwd.h>
 # include "libft/includes/libft.h"
 
-typedef struct	winsize
-				s_ws;
+typedef struct winsize	t_ws;
 
-typedef	struct	dirent
-				s_dir;
+typedef struct dirent	t_dir;
 
-typedef	struct	stat
-				s_stat;
+typedef struct stat		t_stat;
 
-typedef	struct	passwd
-				s_pwd;
+typedef struct passwd	t_pwd;
 
-typedef	struct	group
-				s_grp;
-				
+typedef struct group	t_grp;
+
 typedef struct	s_pad
 {
 	int			n_uid;

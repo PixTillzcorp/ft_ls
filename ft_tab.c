@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_tab.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: heinfalt <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/10/12 13:14:23 by heinfalt          #+#    #+#             */
+/*   Updated: 2017/10/12 13:14:33 by heinfalt         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_ls.h"
 
 void		ft_insert(char **tab, char *str)
@@ -34,7 +46,7 @@ void		ft_free_tab(char **tab)
 	i = 0;
 	if (tab[i])
 	{
-		while(tab[i])
+		while (tab[i])
 			ft_memdel((void **)&tab[i++]);
 		ft_memdel((void **)&tab[i]);
 		free(tab);

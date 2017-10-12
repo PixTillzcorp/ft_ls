@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_print.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: heinfalt <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/10/12 13:13:54 by heinfalt          #+#    #+#             */
+/*   Updated: 2017/10/12 13:13:58 by heinfalt         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_ls.h"
 
 static void		ft_colored_output(const char *path, char *flags, mode_t st_mode)
@@ -56,7 +68,7 @@ static void		ft_padding_out(char **tab, char *flags, int pos)
 
 static int		ft_total_blocks(char **tab)
 {
-	s_stat		stats;
+	t_stat		stats;
 	int			i;
 	int			ret;
 
@@ -103,7 +115,7 @@ void			ft_print_large(const char *path, char *flags, t_pad padding)
 void			ft_print_sort(char **tab, char *flags, int single)
 {
 	t_pad		padding;
-	s_stat		stats;
+	t_stat		stats;
 	char		*buff;
 	int			i;
 
@@ -120,7 +132,7 @@ void			ft_print_sort(char **tab, char *flags, int single)
 			ft_perror("");
 		if (ft_strchr(flags, 'l'))
 			ft_print_large(tab[i], flags, padding);
-		ft_colored_output(tab[i], flags, stats.st_mode); //colored output ?
+		ft_colored_output(tab[i], flags, stats.st_mode);
 		if (readlink(tab[i++], buff, 100) > 0 && ft_strchr(flags, 'l'))
 			ft_printf(" -> %s", buff);
 		ft_padding_out(tab, flags, i);

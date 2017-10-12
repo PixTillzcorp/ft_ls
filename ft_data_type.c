@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_data_type.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: heinfalt <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/10/12 13:13:06 by heinfalt          #+#    #+#             */
+/*   Updated: 2017/10/12 13:13:10 by heinfalt         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_ls.h"
 
 char		ft_data_type(mode_t type)
@@ -21,7 +33,7 @@ char		ft_data_type(mode_t type)
 
 int			ft_is_bc(const char *path)
 {
-	s_stat	stats;
+	t_stat	stats;
 
 	if (lstat(path, &stats) < 0)
 		ft_perror("");
@@ -34,7 +46,7 @@ int			ft_is_bc(const char *path)
 
 int			ft_is_l(const char *path)
 {
-	s_stat	stats;
+	t_stat	stats;
 
 	if (lstat(path, &stats) < 0)
 		ft_perror("");

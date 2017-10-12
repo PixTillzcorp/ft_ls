@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_ls.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: heinfalt <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/10/12 13:13:42 by heinfalt          #+#    #+#             */
+/*   Updated: 2017/10/12 13:13:45 by heinfalt         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_ls.h"
 
 static void	ft_print_single(const char *path, char *flags)
 {
-	char 	**tab;
+	char	**tab;
 	t_pad	padding;
 
 	if (ft_strchr(flags, 'l'))

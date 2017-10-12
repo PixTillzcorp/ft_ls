@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_padding.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: heinfalt <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/10/12 13:13:48 by heinfalt          #+#    #+#             */
+/*   Updated: 2017/10/12 13:13:51 by heinfalt         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_ls.h"
 
 static int	ft_padd_uid(char **tab)
 {
-	s_stat	stats;
-	s_pwd	*usr;
+	t_stat	stats;
+	t_pwd	*usr;
 	int		ret;
 	int		i;
 
@@ -26,8 +38,8 @@ static int	ft_padd_uid(char **tab)
 
 static int	ft_padd_gid(char **tab)
 {
-	s_stat	stats;
-	s_grp	*grp;
+	t_stat	stats;
+	t_grp	*grp;
 	int		ret;
 	int		i;
 
@@ -50,7 +62,7 @@ static int	ft_padd_gid(char **tab)
 
 static int	ft_padd_size(char **tab)
 {
-	s_stat	stats;
+	t_stat	stats;
 	int		ret;
 	int		i;
 
@@ -74,7 +86,7 @@ static int	ft_padd_size(char **tab)
 
 int			ft_get_winsize(void)
 {
-	s_ws	win;
+	t_ws	win;
 
 	if (ioctl(0, TIOCGWINSZ, &win) < 0)
 		ft_perror("ioctl");
@@ -84,7 +96,7 @@ int			ft_get_winsize(void)
 t_pad		ft_padding(char **tab)
 {
 	t_pad	padding;
- 
+
 	padding.n_uid = ft_padd_uid(tab);
 	padding.n_gid = ft_padd_gid(tab);
 	padding.b_size = ft_padd_size(tab);

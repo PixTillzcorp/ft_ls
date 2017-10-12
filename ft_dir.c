@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_dir.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: heinfalt <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/10/12 13:13:12 by heinfalt          #+#    #+#             */
+/*   Updated: 2017/10/12 13:13:17 by heinfalt         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_ls.h"
 
-static char		*ft_newpath(char *dest, const char *p, const char* d)
+static char		*ft_newpath(char *dest, const char *p, const char *d)
 {
-	int		i;
-	int		j;
+	int			i;
+	int			j;
 
 	i = 0;
 	j = 0;
@@ -18,11 +30,11 @@ static char		*ft_newpath(char *dest, const char *p, const char* d)
 	return (dest);
 }
 
-static void	ft_rec_disp(const char *path, char *flags, int nbr_dir)
+static void		ft_rec_disp(const char *path, char *flags, int nbr_dir)
 {
-	DIR		*rep;
-	s_dir	*file;
-	char	*n_path;
+	DIR			*rep;
+	t_dir		*file;
+	char		*n_path;
 
 	n_path = NULL;
 	rep = ft_opendir(path);
@@ -47,9 +59,10 @@ static void	ft_rec_disp(const char *path, char *flags, int nbr_dir)
 		ft_memdel((void **)&n_path);
 }
 
-char		**ft_put_in_tab(char **tab, const char *path, char *name)
+char			**ft_put_in_tab(char **tab, const char *path, char *name)
 {
-	int		i;
+	int			i;
+
 	i = 0;
 	while (tab[i])
 		i++;
@@ -57,11 +70,11 @@ char		**ft_put_in_tab(char **tab, const char *path, char *name)
 	return (tab);
 }
 
-int			ft_disp_dir(const char *path, char *flags, int nbr_dir)
+int				ft_disp_dir(const char *path, char *flags, int nbr_dir)
 {
-	DIR		*rep;
-	s_dir	*file;
-	char	**tab;
+	DIR			*rep;
+	t_dir		*file;
+	char		**tab;
 
 	if (!(rep = ft_opendir(path)))
 		return (0);
@@ -83,5 +96,5 @@ int			ft_disp_dir(const char *path, char *flags, int nbr_dir)
 			ft_rec_disp(path, flags, nbr_dir);
 	}
 	ft_free_tab(tab);
-	return(ft_closedir(rep));
+	return (ft_closedir(rep));
 }

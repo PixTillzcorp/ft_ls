@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_data_time.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: heinfalt <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/10/12 13:13:00 by heinfalt          #+#    #+#             */
+/*   Updated: 2017/10/12 13:13:04 by heinfalt         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_ls.h"
 
 long		ft_data_mtime(const char *path)
 {
-	s_stat	stats;
+	t_stat	stats;
 
 	if (lstat(path, &stats) < 0)
 		ft_perror("");
@@ -45,7 +57,7 @@ static char	*ft_hours(char *date)
 
 char		*ft_data_date(const char *path)
 {
-	s_stat	stats;
+	t_stat	stats;
 	time_t	*nowaday;
 	char	*date;
 

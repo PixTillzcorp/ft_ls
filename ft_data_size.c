@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_data_size.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: heinfalt <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/10/12 13:12:55 by heinfalt          #+#    #+#             */
+/*   Updated: 2017/10/12 13:12:59 by heinfalt         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_ls.h"
 
 long		ft_file_size(const char *path)
 {
-	s_stat	stats;
+	t_stat	stats;
 
 	if (lstat(path, &stats) < 0)
 		ft_perror("");
@@ -22,7 +34,7 @@ int			ft_len_min_max(const char *path)
 
 int			ft_data_minor(const char *path)
 {
-	s_stat	stats;
+	t_stat	stats;
 
 	if (lstat(path, &stats) < 0)
 		ft_perror("");
@@ -31,7 +43,7 @@ int			ft_data_minor(const char *path)
 
 int			ft_data_major(const char *path)
 {
-	s_stat	stats;
+	t_stat	stats;
 
 	if (lstat(path, &stats) < 0)
 		ft_perror("");
@@ -40,7 +52,7 @@ int			ft_data_major(const char *path)
 
 char		*ft_data_size(const char *path, int len)
 {
-	s_stat	stats;
+	t_stat	stats;
 	char	*ret;
 	char	*tmp;
 	int		i;

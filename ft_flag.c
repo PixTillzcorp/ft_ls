@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_flag.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: heinfalt <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/10/12 13:13:32 by heinfalt          #+#    #+#             */
+/*   Updated: 2017/10/12 13:13:35 by heinfalt         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_ls.h"
 
 int			ft_a_or_f(char *flags)
@@ -41,12 +53,11 @@ int			ft_flag(const char **args, char **flag)
 				(*flag) = ft_chrjoin_free((*flag), args[i][j++], 1);
 			if (args[i][j] == '-')
 			{
-				free(*flag);
-				*flag = ft_strdup("");
+				*flag = ft_retstr_free((*flag), ft_strdup(""));
 				return ((args[i + 1] ? i + 1 : -1));
 			}
 			else if (args[i][j])
-				ft_error(ft_chrjoin_free("ft_ls : illegal option -- ", args[i][j], 0), 1);
+				ft_error(ft_chrjoin_free("illegal flag -- ", args[i][j], 0), 1);
 			i++;
 			j = 1;
 		}

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_file.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: heinfalt <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/10/12 13:13:25 by heinfalt          #+#    #+#             */
+/*   Updated: 2017/10/12 13:13:29 by heinfalt         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_ls.h"
 
 int			ft_llnbrlen(long long nbr)
@@ -11,7 +23,7 @@ int			ft_llnbrlen(long long nbr)
 		if (nbr != 0)
 			count++;
 		else
-			break;
+			break ;
 	}
 	return (count);
 }
@@ -35,7 +47,7 @@ int			ft_nbrfile(const char *path, int a)
 {
 	int		count;
 	DIR		*rep;
-	s_dir	*file;
+	t_dir	*file;
 
 	count = 0;
 	if (!(rep = opendir(path)))
