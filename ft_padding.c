@@ -30,7 +30,7 @@ static int	ft_padd_uid(char **tab)
 			if (ret < ft_nbrlen((int)stats.st_uid))
 				ret = ft_nbrlen((int)stats.st_uid);
 		}
-		if (ret < (int)ft_strlen(usr->pw_name))
+		else if (ret < (int)ft_strlen(usr->pw_name))
 			ret = (int)ft_strlen(usr->pw_name);
 	}
 	return (ret);
