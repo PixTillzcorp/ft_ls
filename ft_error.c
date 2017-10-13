@@ -20,7 +20,7 @@ int		ft_error(const char *msg, int usage)
 	if (msg)
 		ft_memdel((void **)&msg);
 	if (usage)
-		printf("usage : ft_ls [-1GRSafglrt] [file ...]");
+		ft_putstr("usage : ft_ls [-1GRSafglrt] [file ...]\n");
 	exit(EXIT_FAILURE);
 }
 
