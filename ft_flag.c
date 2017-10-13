@@ -51,7 +51,7 @@ int			ft_flag(const char **args, char **flag)
 		{
 			while (ft_is_flag(args[i][j]))
 				(*flag) = ft_chrjoin_free((*flag), args[i][j++], 1);
-			if (args[i][j] == '-')
+			if (args[i][1] == '-' && !args[i][2])
 			{
 				*flag = ft_retstr_free((*flag), ft_strdup(""));
 				return ((args[i + 1] ? i + 1 : -1));
