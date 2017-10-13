@@ -47,7 +47,7 @@ int			ft_flag(const char **args, char **flag)
 	j = 1;
 	while (args[i])
 	{
-		if (args[i][0] == '-')
+		if (args[i][0] == '-' && args[i][1])
 		{
 			while (ft_is_flag(args[i][j]))
 				(*flag) = ft_chrjoin_free((*flag), args[i][j++], 1);

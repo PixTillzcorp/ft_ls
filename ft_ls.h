@@ -49,7 +49,7 @@ int				ft_nbrdir(const char **input, int argc);
 int				ft_nbrfile(const char *path, int a);
 DIR				*ft_opendir(const char *path);
 
-void			ft_error(const char *msg, int usage);
+int				ft_error(const char *msg, int usage);
 void			ft_perror(const char *msg);
 int				ft_check_input(const char *path, char *flags);
 

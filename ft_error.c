@@ -12,7 +12,7 @@
 
 #include "ft_ls.h"
 
-void	ft_error(const char *msg, int usage)
+int		ft_error(const char *msg, int usage)
 {
 	ft_putstr("ft_ls : ");
 	ft_putstr(msg);

@@ -57,7 +57,7 @@ static void		ft_padding_out(char **tab, char *flags, int pos)
 			if (!(output = ft_get_winsize() / len))
 				output = 1;
 		}
-		if (pos % output == 0)
+		if (pos % output == 0 && tab[pos])
 			ft_putchar('\n');
 		else
 			ft_putxchar(' ', len - ft_strlen(ft_data_name(tab[pos - 1])));
