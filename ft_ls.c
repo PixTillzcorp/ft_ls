@@ -94,7 +94,7 @@ static void	ft_find(const char **input, char *flags, int nbr_arg, int pos)
 			ft_strchr(flags, 'l')))
 			{
 				ft_disp_dir(input[pos], flags, ft_nbrdir(input, nbr_arg));
-				if (pos + 1 < ft_nbrdir(input, nbr_arg))
+				if (pos + 1 < nbr_arg)
 					ft_putchar('\n');
 				pos++;
 			}
