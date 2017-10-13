@@ -100,7 +100,7 @@ int				ft_disp_dir(const char *path, char *flags, int nbr_dir)
 			ft_put_in_tab(tab, path, file->d_name);
 		}
 		ft_print_sort(ft_sort_tab(tab, flags), flags, 0);
-		if (strchr(flags, 'R'))
+		if (ft_strchr(flags, 'R'))
 			ft_rec_disp(tab, flags, nbr_dir);
 	}
 	ft_free_tab(tab);
