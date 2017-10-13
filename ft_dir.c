@@ -51,6 +51,22 @@ static void		ft_rec_disp(char **tab, char *flags, int nbr_dir)
 	}
 }
 
+int				ft_pos_last_dir(const char **input)
+{
+	int			ret;
+	int			i;
+
+	i = 0;
+	ret = 0;
+	while (input[i])
+	{
+		if (ft_isdir(input[i]))
+			ret = i;
+		i++;
+	}
+	return (ret);
+}
+
 char			**ft_put_in_tab(char **tab, const char *path, char *name)
 {
 	int			i;

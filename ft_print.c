@@ -100,7 +100,7 @@ void			ft_print_large(const char *path, char *flags, t_pad padding)
 		ft_data_major(path)));
 		ft_putchar(',');
 		ft_putxchar(' ', (padding.b_size / 2) + (padding.b_size % 2)\
-		- ft_printf(" %d", ft_data_major(path)));
+		- ft_printf(" %d", ft_data_minor(path)));
 		ft_putchar(' ');
 	}
 	else
