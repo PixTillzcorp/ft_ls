@@ -46,7 +46,7 @@ static void		ft_padding_out(char **tab, char *flags, int pos)
 	static int	len;
 	static int	output;
 
-	if (ft_strchr(flags, 'l') || ft_strchr(flags, '1'))
+	if (ft_strchr(flags, 'l') || ft_strchr(flags, '1') || ft_strchr(flags, 'g'))
 		ft_putchar('\n');
 	else
 	{
@@ -130,7 +130,7 @@ void			ft_print_sort(char **tab, char *flags, int single)
 		buff[99] = '\0';
 		if (lstat(tab[i], &stats) < 0)
 			ft_perror(ft_strdup("ft_ls "));
-		if (ft_strchr(flags, 'l'))
+		if (ft_strchr(flags, 'l') || ft_strchr(flags, 'g'))
 			ft_print_large(tab[i], flags, padding);
 		ft_colored_output(tab[i], flags, stats.st_mode);
 		if (readlink(tab[i++], buff, 100) > 0 && ft_strchr(flags, 'l'))
