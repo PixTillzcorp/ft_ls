@@ -31,48 +31,46 @@ static void	ft_print_single(const char *path, char *flags)
 		ft_putstr(".\n");
 }
 
-static void	ft_putsingle(const char **input, char **tab, char *flags, int pos)
+static int	ft_get_file(const char **input, char *flags, int nbr, int pos)
 {
-	int		tmp;
-	int		size;
-	int		nbr;
+	int		ret;
+	int		i;
 
-	nbr = 0;
-	tmp = pos;
-	size = 0;
-	while (input[nbr])
-		nbr++;
-	while (pos < nbr)
+	i = 0;
+	ret = 0;
+	while (pos + i < nbr)
 	{
-		if (!ft_isdir(input[pos]) || ft_strchr(flags, 'd') ||\
-		(ft_is_l(input[pos]) && ft_strchr(flags, 'l')))
-			ft_insert(tab, (char *)(input[pos]));
-		pos++;
+		if ((!ft_isdir(input[pos + i]) || ft_strchr(flags, 'd') ||\
+		(ft_is_l(input[pos + i]) && ft_strchr(flags, 'l'))) && input[pos + i])
+			ret++;	
+		i++;
 	}
-	while (tab[size])
-		size++;
-	ft_print_sort(ft_sort_tab(tab, flags), flags, 1);
-	if (nbr - tmp > size && tab[0])
-		ft_putchar('\n');
-	ft_free_tab(tab);
+	return (ret);
 }
 
 static void	ft_single_file(const char **input, char *flags, int nbr, int pos)
 {
+	char	**tab;
 	int		size;
-	int		tmp;
+	int		i;
 
-	tmp = pos;
-	size = 0;
-	while (pos < nbr)
-	{
-		if (!ft_isdir(input[pos]) || ft_strchr(flags, 'd') ||\
-		(ft_is_l(input[pos]) && ft_strchr(flags, 'l')))
-			size++;
-		pos++;
-	}
+	i = 0;
+	size = ft_get_file(input, flags, nbr, pos);
 	if (size)
-		ft_putsingle(input, ft_init_tab(size), flags, tmp);
+	{
+		tab = ft_init_tab(size);
+		while (pos + i < nbr)
+		{
+			if ((!ft_isdir(input[pos + i]) || ft_strchr(flags, 'd') || (ft_is_l\
+			(input[pos + i]) && ft_strchr(flags, 'l'))) && input[pos + i])
+				ft_insert(tab, (char *)(input[pos + i]));
+			i++;
+		}
+		ft_print_sort(ft_sort_tab(tab, flags), flags, 1);
+		if (nbr - pos > size && tab[0])
+			ft_putchar('\n');
+		ft_free_tab(tab);
+	}
 }
 
 static void	ft_find(const char **input, char *flags, int nbr_arg, int pos)
