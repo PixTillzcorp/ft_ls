@@ -73,7 +73,7 @@ lib_re:
 	@ make -C $(LIB_PATH) re
 
 %.o: %.c
-	@ $(CC) $(CFLAGS) -c $(SRCC)
+	@ $(CC) $(CFLAGS) -c $<
 
 $(NAME): $(SRCO) ft_ls.h
 	@ echo "$(PINK)$(FONT_NOIR).o successfully created\t\t\t[$(GREEN)\xe2\x9c\x94$(PINK)]$(NORMAL)"
