@@ -65,7 +65,9 @@ char		*ft_data_date(const char *path)
 	if (lstat(path, &stats) < 0)
 		ft_perror(ft_strdup("ft_ls "));
 	date = ctime(&stats.st_mtimespec.tv_sec);
-	if (ABS((long)time(nowaday) - (long)stats.st_mtimespec.tv_sec) > 15778800)
+	if ((long)time(nowaday) - (long)stats.st_mtimespec.tv_sec > 15778800)
+		return (ft_years(date));
+	if ((long)stats.st_mtimespec.tv_sec - (long)time(nowaday) > 15778800)
 		return (ft_years(date));
 	return (ft_hours(date));
 }
