@@ -91,10 +91,10 @@ static void	ft_find(const char **input, char *flags, int nbr_arg, int pos)
 			if (ft_isdir(input[pos]) && !(ft_is_l(input[pos]) &&\
 			ft_strchr(flags, 'l')))
 			{
+				ft_printf("%s:\n", input[pos]);
 				ft_disp_dir(input[pos], flags, ft_nbrdir(input, nbr_arg));
-				if (pos < ft_pos_last_dir(input))
+				if (pos++ < ft_pos_last_dir(input, nbr_arg))
 					ft_putchar('\n');
-				pos++;
 			}
 			else
 				pos++;

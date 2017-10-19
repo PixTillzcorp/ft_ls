@@ -51,17 +51,21 @@ static void		ft_rec_disp(char **tab, char *flags, int nbr_dir)
 	}
 }
 
-int				ft_pos_last_dir(const char **input)
+int				ft_pos_last_dir(const char **input, int argc)
 {
+	DIR			*is_dir;
 	int			ret;
 	int			i;
 
 	i = 0;
 	ret = 0;
-	while (input[i])
+	while (i < argc)
 	{
-		if (ft_isdir(input[i]))
+		if ((is_dir = opendir(input[i])))
+		{
+			closedir(is_dir);
 			ret = i;
+		}
 		i++;
 	}
 	return (ret);
@@ -87,8 +91,6 @@ int				ft_disp_dir(const char *path, char *flags, int nbr_dir)
 	if (!(rep = ft_opendir(path)))
 		return (0);
 	tab = ft_init_tab(ft_nbrfile(path, ft_a_or_f(flags)));
-	if (nbr_dir > 1)
-		ft_printf("%s:\n", path);
 	if (ft_nbrfile(path, ft_a_or_f(flags)) == 0)
 		ft_putstr("(empty directory)\n");
 	else

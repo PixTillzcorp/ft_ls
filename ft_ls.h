@@ -53,7 +53,7 @@ int				ft_error(const char *msg, int usage);
 void			ft_perror(const char *msg);
 int				ft_check_input(const char *path, char *flags);
 
-int				ft_pos_last_dir(const char **input);
+int				ft_pos_last_dir(const char **input, int argc);
 int				ft_llnbrlen(long long nbr);
 
 int				ft_flag(const char **args, char **flag);
