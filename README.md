@@ -1,2 +1,5 @@
 # ft_ls
-Y'a la cuillère donc c'est parfait ;)
+
+First Unix branch project.
+
+The name speaks for itself !
